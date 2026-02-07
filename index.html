@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>For My Laado ❤️</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Sacramento&family=Poppins:wght@300;400;600&display=swap');
+
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #000;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: 'Poppins', sans-serif;
+            overflow: hidden;
+            color: white;
+            text-align: center;
+        }
+
+        /* Animated Background */
+        .bg-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle, rgba(63,94,251,0.2) 0%, rgba(0,0,0,0.9) 100%);
+            z-index: -1;
+        }
+
+        .container {
+            position: relative;
+            z-index: 10;
+            max-width: 90%;
+            width: 380px;
+        }
+
+        h1 {
+            font-family: 'Sacramento', cursive;
+            font-size: 3.5rem;
+            margin-bottom: 15px;
+            color: #ff6b81;
+            text-shadow: 0 0 20px rgba(255, 107, 129, 0.6);
+            line-height: 1.2;
+        }
+
+        p {
+            font-size: 1.1rem;
+            line-height: 1.7;
+            color: #f1f1f1;
+            margin-bottom: 25px;
+            min-height: 100px;
+            font-weight: 300;
+        }
+
+        /* Polaroid Photo Style */
+        .photo-frame {
+            background: white;
+            padding: 10px 10px 30px 10px;
+            display: inline-block;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            transform: rotate(-3deg);
+            margin-bottom: 20px;
+            animation: float 4s ease-in-out infinite;
+            max-width: 280px;
+        }
+
+        .photo-frame img {
+            width: 100%;
+            border-radius: 2px;
+            display: block;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: rotate(-3deg) translateY(0); }
+            50% { transform: rotate(-3deg) translateY(-10px); }
+        }
+
+        .btn {
+            background: linear-gradient(90deg, #ff416c, #ff4b2b);
+            color: white;
+            border: none;
+            padding: 15px 40px;
+            font-size: 1.1rem;
+            border-radius: 50px;
+            cursor: pointer;
+            box-shadow: 0 0 25px rgba(255, 65, 108, 0.5);
+            font-weight: 600;
+            transition: all 0.3s ease;
+            margin-top: 10px;
+        }
+
+        .btn:active { transform: scale(0.95); }
+
+        .hidden { display: none; }
+        .fade-in { animation: fadeIn 2s forwards; }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Floating Hearts */
+        .heart {
+            position: absolute;
+            color: #ff4081;
+            font-size: 20px;
+            animation: fly 6s linear infinite;
+            bottom: -50px;
+        }
+        @keyframes fly {
+            0% { transform: translateY(0); opacity: 1; }
+            100% { transform: translateY(-100vh); opacity: 0; }
+        }
+
+        .highlight { color: #ff6b81; font-weight: 600; }
+
+    </style>
+</head>
+<body>
+
+    <div class="bg-overlay"></div>
+    <div id="hearts-container"></div>
+
+    <audio id="bgMusic" loop>
+        <source src="song.mp3" type="audio/mpeg">
+    </audio>
+
+    <div class="container">
+        
+        <div id="step0">
+            <h1>Betu... ❤️</h1>
+            <p>Before I ask you something special today,<br>I want to take you back to where it all began.</p>
+            <p style="font-size: 0.9rem; opacity: 0.8;">(Put your volume up 🎵)</p>
+            <button class="btn" onclick="startJourney()">Walk with me...</button>
+        </div>
+
+        <div id="step1" class="hidden">
+            <div class="photo-frame">
+                <img src="image1.jpg" alt="Meeting">
+            </div>
+            <p id="txt1"></p>
+            <button class="btn" onclick="nextStep(2)">And then...</button>
+        </div>
+
+        <div id="step2" class="hidden">
+            <div class="photo-frame" style="transform: rotate(3deg);">
+                <img src="image2.jpg" alt="Beautiful">
+            </div>
+            <p id="txt2"></p>
+            <button class="btn" onclick="nextStep(3)">Magic happened ✨</button>
+        </div>
+
+        <div id="step3" class="hidden">
+            <div class="photo-frame" style="transform: rotate(-2deg);">
+                <img src="image3.jpg" alt="Drive">
+            </div>
+            <p id="txt3"></p>
+            <button class="btn" onclick="nextStep(4)">Best moment...</button>
+        </div>
+
+        <div id="step4" class="hidden">
+            <div class="photo-frame" style="transform: rotate(2deg);">
+                <img src="image4.jpg" alt="Kiss">
+            </div>
+            <p id="txt4"></p>
+            <button class="btn" onclick="nextStep(5)">Today... ❤️</button>
+        </div>
+
+        <div id="step5" class="hidden">
+            <div class="photo-frame">
+                <img src="image5.jpg" alt="Us">
+            </div>
+            <h1>My Laado...</h1>
+            <p>Pichle saal hum Valentine's week ke baad mile the... par is saal hum saath hain.<br><br>
+            I want to hold your hand like this forever.</p>
+            <h2 style="font-family: 'Poppins'; font-size: 1.4rem; color: #fff;">Will you be my Valentine? 🌹</h2>
+            <button class="btn" onclick="acceptProposal()">YES! Forever! 💖</button>
+        </div>
+
+        <div id="step6" class="hidden">
+            <h1>I Love You! ❤️</h1>
+            <p>Mera Betu, mera Bacha,<br>Mera Dulara, mera Laado...<br>You are my everything.</p>
+            <p>Happy Propose Day, Jaan.</p>
+        </div>
+
+    </div>
+
+    <script>
+        const texts = {
+            1: "Yaad hai wo pehli mulakat?<br>Main restaurant ke gate par bas aapka wait kar raha tha... <br>Dil zoron se dhadak raha tha... <span class='highlight'>Waiting for my girl.</span>",
+            2: "Aur phir aap aayi... 🚗<br>Maine gate open kiya, wo bouquet diya 🌹.<br>Aapka wo smile aur halka sa blush...<br>Haaye! Main wahin <span class='highlight'>pighal gaya tha.</span>",
+            3: "Phir humari wo Long Drive... 🚘<br>Pizza 🍕, Beer 🍺, aur dher saari baatein.<br>Bahar duniya thi, par car ke andar sirf <span class='highlight'>Hum</span> the.",
+            4: "Railway station ki wo walk... 🛤️<br>Drop karte waqt wo photo click karna aur wo <span class='highlight'>Forehead Kiss</span> 😘.<br>Us din maine sirf Goodbye nahi bola, apna dil hamesha ke liye de diya."
+        };
+
+        function startJourney() {
+            document.getElementById('bgMusic').play().catch(e => console.log("Audio needs interaction"));
+            nextStep(1);
+        }
+
+        function nextStep(id) {
+            document.querySelectorAll('div[id^="step"]').forEach(el => el.classList.add('hidden'));
+            const el = document.getElementById('step' + id);
+            el.classList.remove('hidden');
+            el.classList.add('fade-in');
+
+            if(texts[id]) {
+                const p = document.getElementById('txt' + id);
+                p.innerHTML = "";
+                typeWriter(texts[id], p, 0);
+            }
+        }
+
+        function typeWriter(text, element, i) {
+            if (i < text.length) {
+                // Handle HTML tags for line breaks/spans
+                if (text.substring(i).startsWith("<br>")) {
+                    element.innerHTML += "<br>";
+                    i += 4;
+                } else if (text.substring(i).startsWith("<span")) {
+                    let end = text.indexOf(">", i);
+                    element.innerHTML += text.substring(i, end+1);
+                    i = end + 1;
+                } else if (text.substring(i).startsWith("</span>")) {
+                    element.innerHTML += "</span>";
+                    i += 7;
+                } else {
+                    element.innerHTML += text.charAt(i);
+                    i++;
+                }
+                setTimeout(() => typeWriter(text, element, i), 40);
+            }
+        }
+
+        function acceptProposal() {
+            nextStep(6);
+            startConfetti();
+        }
+
+        function startConfetti() {
+            const container = document.getElementById('hearts-container');
+            for(let i=0; i<50; i++) {
+                const h = document.createElement('div');
+                h.className = 'heart';
+                h.innerHTML = Math.random() > 0.5 ? '❤️' : '🌹';
+                h.style.left = Math.random() * 100 + 'vw';
+                h.style.fontSize = Math.random() * 20 + 20 + 'px';
+                h.style.animationDuration = Math.random() * 2 + 3 + 's';
+                h.style.animationDelay = Math.random() * 2 + 's';
+                container.appendChild(h);
+            }
+        }
+    </script>
+</body>
+</html>
