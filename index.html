@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>For My Betu ❤️</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Poppins:wght@300;400;600&display=swap');
+
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #000;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: 'Poppins', sans-serif;
+            overflow: hidden;
+            color: white;
+            text-align: center;
+        }
+
+        /* Dynamic Background Layer */
+        #bg-layer {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-size: cover;
+            background-position: center;
+            transition: opacity 1s ease-in-out;
+            opacity: 0.5;
+            z-index: -1;
+        }
+
+        /* Dark Overlay for text readability */
+        .overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to bottom, rgba(0,0,0,0.2), rgba(0,0,0,0.8));
+            z-index: 0;
+        }
+
+        .container {
+            position: relative;
+            z-index: 10;
+            max-width: 85%;
+            width: 400px;
+        }
+
+        h1 {
+            font-family: 'Dancing Script', cursive;
+            font-size: 3rem;
+            margin-bottom: 10px;
+            color: #ff4081;
+            text-shadow: 0 0 15px rgba(255, 64, 129, 0.8);
+            animation: glow 2s ease-in-out infinite alternate;
+        }
+
+        @keyframes glow {
+            from { text-shadow: 0 0 10px #ff4081; }
+            to { text-shadow: 0 0 25px #ff80ab, 0 0 10px white; }
+        }
+
+        p {
+            font-size: 1.1rem;
+            line-height: 1.6;
+            margin-bottom: 30px;
+            min-height: 120px;
+            text-shadow: 1px 1px 4px rgba(0,0,0,0.8);
+        }
+
+        .scene-emoji {
+            font-size: 5rem;
+            margin-bottom: 20px;
+            display: block;
+            animation: float 3s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-15px); }
+        }
+
+        .btn {
+            background: linear-gradient(45deg, #ff4081, #f50057);
+            color: white;
+            border: none;
+            padding: 16px 40px;
+            font-size: 1.1rem;
+            border-radius: 50px;
+            cursor: pointer;
+            box-shadow: 0 0 20px rgba(245, 0, 87, 0.5);
+            font-weight: 600;
+            transition: transform 0.2s;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .btn:active { transform: scale(0.95); }
+
+        .hidden { display: none; }
+        
+        /* Loading Animation */
+        .loader {
+            border: 4px solid #f3f3f3;
+            border-top: 4px solid #ff4081;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 20px auto;
+        }
+        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+
+        /* Floating Hearts */
+        .heart {
+            position: absolute;
+            color: #ff4081;
+            animation: fly 5s linear infinite;
+            bottom: -50px;
+            z-index: 1;
+        }
+        @keyframes fly {
+            0% { transform: translateY(0) rotate(0deg); opacity: 1; }
+            100% { transform: translateY(-100vh) rotate(360deg); opacity: 0; }
+        }
+
+    </style>
+</head>
+<body>
+
+    <div id="bg-layer" style="background-image: url('https://images.unsplash.com/photo-1518199266791-5375a83190b7?q=80&w=2070');"></div>
+    <div class="overlay"></div>
+
+    <audio id="bgMusic" loop>
+        <source src="https://www.bensound.com/bensound-music/bensound-love.mp3" type="audio/mpeg">
+    </audio>
+
+    <div class="container">
+        
+        <div id="step0">
+            <div class="loader"></div>
+            <h2>Connecting to Heart...</h2>
+            <p>Guplu has sent a special memory for you.</p>
+            <button class="btn" onclick="startExperience()">Open Message 💌</button>
+        </div>
+
+        <div id="step1" class="hidden">
+            <h1>Hey Betu... ❤️</h1>
+            <p>Pichle saal hum <b>Valentine's Week</b> ke just baad mile the...<br>Isliye wo mauka miss ho gaya tha.<br>But this year? This year is ours.</p>
+            <button class="btn" onclick="nextStep(2)">Rewind Memories ⏪</button>
+        </div>
+
+        <div id="step2" class="hidden">
+            <div class="scene-emoji">🚗✨</div>
+            <p id="txt2"></p>
+            <button class="btn" onclick="nextStep(3)">Next Scene 🎬</button>
+        </div>
+
+        <div id="step3" class="hidden">
+            <div class="scene-emoji">💐😊</div>
+            <p id="txt3"></p>
+            <button class="btn" onclick="nextStep(4)">Next Scene 🎬</button>
+        </div>
+
+        <div id="step4" class="hidden">
+            <div class="scene-emoji">🍕🍻🚘</div>
+            <p id="txt4"></p>
+            <button class="btn" onclick="nextStep(5)">Next Scene 🎬</button>
+        </div>
+
+        <div id="step5" class="hidden">
+            <div class="scene-emoji">🚉🤝❤️</div>
+            <p id="txt5"></p>
+            <button class="btn" onclick="nextStep(6)">The Climax 🎬</button>
+        </div>
+
+        <div id="step6" class="hidden">
+            <h1>My Betu... 💍</h1>
+            <p>Us din maine sirf forehead kiss nahi kiya tha,<br>Maine apna dil hamesha ke liye de diya tha.<br><br><b>Will you be my First & Forever Valentine?</b></p>
+            <button class="btn" onclick="acceptProposal()">YES! I'm Yours! 💖</button>
+            <br><br>
+            <button class="btn" style="background: #333; font-size: 0.8rem; padding: 10px;" id="noBtn" onmouseover="runAway()" ontouchstart="runAway()">No 😜</button>
+        </div>
+
+        <div id="step7" class="hidden">
+            <h1>I Love You Shivangi! 😭❤️</h1>
+            <div class="scene-emoji">💑🎆</div>
+            <p>Happy Propose Day, My Love!<br>Can't wait to hold your hand again.<br>You are my world.<br><br>- Your Guplu</p>
+        </div>
+
+    </div>
+
+    <script>
+        // BACKGROUND IMAGES FOR EACH SCENE
+        const backgrounds = {
+            1: "https://images.unsplash.com/photo-1518199266791-5375a83190b7", // Intro
+            2: "https://images.unsplash.com/photo-1469334031218-e382a71b716b", // Car/Waiting
+            3: "https://images.unsplash.com/photo-1562690868-60bbe762151c", // Bouquet/Flowers
+            4: "https://images.unsplash.com/photo-1513104890138-7c749659a591", // Pizza/Night
+            5: "https://images.unsplash.com/photo-1474487548417-781cb71495f3", // Railway Station/Track
+            6: "https://images.unsplash.com/photo-1518895949257-7621c3c786d7", // Proposal
+            7: "https://images.unsplash.com/photo-1492684223066-81342ee5ff30"  // Celebration
+        };
+
+        // STORY DIALOGUES (The Script)
+        const lines = {
+            2: "Scene 1: <b>The Wait.</b><br>Main Restaurant ke gate pe wait kar raha tha... Dil dhak-dhak kar raha tha. Phir aapki car aayi... aur sab tham gaya.",
+            3: "Scene 2: <b>The Blush.</b><br>Maine gate open kiya, Bouquet diya 🌹. Aapka wo smile aur halka sa blush... Haaye! Main wahi clean bold ho gaya tha.",
+            4: "Scene 3: <b>The Date.</b><br>Humari wo long drive... Pizza 🍕, Beer 🍺, aur dher saari baatein. Laga ki ye raat kabhi khatam na ho.",
+            5: "Scene 4: <b>The Connection.</b><br>Railway station pe wo walk... 🛤️ Phir drop karte waqt wo photo click karna 📸 aur wo forehead kiss... 😘<br>Us din sab kuch badal gaya."
+        };
+
+        function startExperience() {
+            var music = document.getElementById('bgMusic');
+            music.volume = 0.5;
+            music.play().catch(e => console.log("Audio play failed, user interaction needed"));
+            nextStep(1);
+        }
+
+        function nextStep(id) {
+            // Hide all
+            document.querySelectorAll('div[id^="step"]').forEach(el => el.classList.add('hidden'));
+            
+            // Show next
+            const el = document.getElementById('step' + id);
+            el.classList.remove('hidden');
+
+            // Change Background
+            if(backgrounds[id]) {
+                document.getElementById('bg-layer').style.backgroundImage = `url('${backgrounds[id]}?q=80&w=1080&auto=format&fit=crop')`;
+            }
+
+            // Type text if needed
+            if (lines[id]) {
+                const p = document.getElementById('txt' + id);
+                p.innerHTML = lines[id];
+                p.style.animation = "fadeIn 2s";
+            }
+        }
+
+        function runAway() {
+            const btn = document.getElementById('noBtn');
+            const x = Math.random() * 200 - 100;
+            const y = Math.random() * 200 - 100;
+            btn.style.transform = `translate(${x}px, ${y}px)`;
+        }
+
+        function acceptProposal() {
+            nextStep(7);
+            startConfetti();
+        }
+
+        function startConfetti() {
+            const container = document.body;
+            // Create 50 hearts
+            for(let i=0; i<50; i++) {
+                const h = document.createElement('div');
+                h.className = 'heart';
+                h.innerHTML = Math.random() > 0.5 ? '❤️' : '🌹';
+                h.style.left = Math.random() * 100 + 'vw';
+                h.style.fontSize = Math.random() * 20 + 20 + 'px';
+                h.style.animationDuration = Math.random() * 2 + 3 + 's';
+                h.style.animationDelay = Math.random() * 2 + 's';
+                container.appendChild(h);
+            }
+        }
+    </script>
+</body>
+</html>
